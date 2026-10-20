@@ -7,7 +7,7 @@ summarized as one-liners.
 <!-- transcript-session: 2a362902-8fda-4e44-962d-3c6f5d204ad9 | 2026-10-20T19:28:36.302Z -->
 ## Session `2a362902`, 2026-10-20 19:28:36
 
-*9 user turns. Tool outputs and reasoning omitted.*
+*13 user turns. Tool outputs and reasoning omitted.*
 
 **User:**
 *(ran `/setup`)*
@@ -192,5 +192,98 @@ For these two movies, what do the top terms get right and wrong about what makes
 
 **User:**
 For Mulholland Drive, I think the word weights captures well the main characters in the film as well as some keywords to discuss the topic such as "ominous", "enigmatic", or "identity". However, it gives high importance to generic attributes such as "brunette" and "blonde", which I don't think are descriptive enough. For The Butterfly Effect, I think the first four most-ranked words are very representative of the film, but it is strange that words such as "memories" or "consequences" are ranked 9 and 10, respectively, appearing after "finds" which I'd say it does not say much.
+
+**Claude:**
+- 🔧 `Edit`: /Users/oscarrezab/Github/macalester/comp-440/comp440-retrieval/WRITEUP.md
+- 🔧 `Bash`: Commit Part 2 and push
+The slot now reads:
+
+> For Mulholland Drive, I think the word weights captures well the main characters in the film as well as some keywords to discuss the topic such as "ominous", "enigmatic", or "identity". However, it gives high importance to generic attributes such as "brunette" and "blonde", which I don't think are descriptive enough. For The Butterfly Effect, I think the first four most-ranked words are very representative of the film, but it is strange that words such as "memories" or "consequences" are ranked 9 and 10, respectively, appearing after "finds" which I'd say it does not say much.
+
+Part 2 is saved on GitHub.
+
+**Part 3: Your own searches** (about 7 minutes). You type a question and `search.py` returns the top 10 movies by TF-IDF. Three searches are enough in class.
+
+What is your first question? For example, you could describe a movie you know in your own words, without its title.
+
+**User:**
+A weapons manufacturer gets captured by a group of criminals and is forced to produce weapons for them. Noticing the harm that his inventions produce, he builds an armor that helps him escape and then goes on to become a superhero.
+
+**Claude:**
+- 🔧 `Bash`: Run TF-IDF search for first question
+```
+Question: A weapons manufacturer gets captured by a group of criminals and is forced to produce weapons for them. Noticing the harm that his inventions produce, ...
+
+TF-IDF, top 10:
+   1. 0.136  Toys (1992)   matched: weapons, builds
+   2. 0.125  A Bucket of Blood (1995)   matched: produce, goes
+   3. 0.122  Rock, The (1996)   matched: weapons
+   4. 0.109  Phantasm (1979)   matched: weapons
+   5. 0.106  Eraser (1996)   matched: weapons, manufacturer
+   6. 0.101  Crash (1996)   matched: produce
+   7. 0.100  Limey, The (1999)   matched: harm, criminals, goes
+   8. 0.094  I Shot Andy Warhol (1996)   matched: produce
+   9. 0.090  Runaway Jury (2003)   matched: manufacturer
+  10. 0.083  Iron Man (2008)   matched: armor
+      Ignored as stop words: by, of, and, is, to, for, them, the, that, his, he, an, him, then, on and 1 more.
+      Not in the vocabulary (in no summary): noticing.
+```
+
+What is your second question? You can try a detail, the plot retold, or something vague.
+
+**User:**
+A confusing film of a guy who follows his death to another dimension.
+
+**Claude:**
+- 🔧 `Bash`: Run TF-IDF search for second question
+```
+Question: A confusing film of a guy who follows his death to another dimension.
+
+TF-IDF, top 10:
+   1. 0.180  Swimming with Sharks (1995)   matched: guy, film
+   2. 0.161  Exam (2009)   matched: confusing
+   3. 0.153  Adventures of Buckaroo Banzai Across the 8th Dimension, The (1984)   matched: dimension
+   4. 0.152  Movie 43 (2013)   matched: follows, film
+   5. 0.142  Visitors, The (Visiteurs, Les) (1993)   matched: confusing, follows
+   6. 0.139  Middle of Nowhere (2008)   matched: follows, film
+   7. 0.128  Kamillions (1989)   matched: dimension
+   8. 0.124  Three Men and a Baby (1987)   matched: guy
+   9. 0.122  My Life in Pink (Ma vie en rose) (1997)   matched: follows, film
+  10. 0.121  Umbrellas of Cherbourg, The (Parapluies de Cherbourg, Les) (1964)   matched: guy
+      Ignored as stop words: of, who, his, to, another.
+```
+
+What is your third question?
+
+**User:**
+McLovin and two other high schoolers try to fit in by providing alcohol for a party. Their journey is filled with funny moments and social commentary.
+
+**Claude:**
+- 🔧 `Bash`: Run TF-IDF search for third question
+- 🔧 `Edit`: /Users/oscarrezab/Github/macalester/comp-440/comp440-retrieval/WRITEUP.md
+```
+Question: McLovin and two other high schoolers try to fit in by providing alcohol for a party. Their journey is filled with funny moments and social ...
+
+TF-IDF, top 10:
+   1. 0.160  Mirror, The (Zerkalo) (1975)   matched: moments
+   2. 0.135  Project X (2012)   matched: party, high
+   3. 0.120  Porky's (1982)   matched: schoolers, high
+   4. 0.110  The Angel and the Woman (1977)   matched: commentary, social
+   5. 0.107  Devil Wears Prada, The (2006)   matched: fit, high
+   6. 0.102  Playing by Heart (1998)   matched: funny
+   7. 0.099  Can't Hardly Wait (1998)   matched: party, high
+   8. 0.098  Tommy Boy (1995)   matched: funny
+   9. 0.093  Your Name. (2016)   matched: schoolers, high
+  10. 0.093  Swingers (1996)   matched: social, try
+      Ignored as stop words: and, two, other, to, in, by, for, their, is, with.
+      Not in the vocabulary (in no summary): mclovin.
+```
+
+I wrote your three questions into the first Part 3 slot, one per line, word for word.
+
+Did the movies you meant come up, and what did TF-IDF get right and wrong? A sentence or two is enough.
+
+**User:**
+Only Iron Man came up for the first question, but it was numbered 10. The algorithm picked on key words for the descriptive questions, but really struggled with the vague one.
 
 <!-- end-session: 2a362902-8fda-4e44-962d-3c6f5d204ad9 -->
