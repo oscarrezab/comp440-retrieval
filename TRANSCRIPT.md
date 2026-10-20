@@ -7,7 +7,7 @@ summarized as one-liners.
 <!-- transcript-session: 2a362902-8fda-4e44-962d-3c6f5d204ad9 | 2026-10-20T19:28:36.302Z -->
 ## Session `2a362902`, 2026-10-20 19:28:36
 
-*13 user turns. Tool outputs and reasoning omitted.*
+*16 user turns. Tool outputs and reasoning omitted.*
 
 **User:**
 *(ran `/setup`)*
@@ -285,5 +285,59 @@ Did the movies you meant come up, and what did TF-IDF get right and wrong? A sen
 
 **User:**
 Only Iron Man came up for the first question, but it was numbered 10. The algorithm picked on key words for the descriptive questions, but really struggled with the vague one.
+
+**Claude:**
+- 🔧 `Edit`: /Users/oscarrezab/Github/macalester/comp-440/comp440-retrieval/WRITEUP.md
+- 🔧 `Bash`: Commit Part 3, push, check upstream
+- 🔧 `Bash`: Run TF-IDF over the question bank
+The slot now reads:
+
+> Only Iron Man came up for the first question, but it was numbered 10. The algorithm picked on key words for the descriptive questions, but really struggled with the vague one.
+
+Part 3 is saved on GitHub.
+
+**Part 4: The question bank** (about 9 minutes). `evaluate.py` runs all 518 questions in the bank against TF-IDF with your settings.
+
+```
+TF-IDF, with your settings: REMOVE_STOP_WORDS = True, MIN_MOVIES = 1, REPEATS_COUNT_LESS = False.
+Ran 518 questions against 4,309 movies in under a second.
+
+TF-IDF put the right movie first for 19 of 100 written questions and in the top 10 for 32.
+  Of the 34 detail questions, it put 19 first and 32 in the top 10.
+  Of the 33 reworded questions, it put 0 first and 0 in the top 10.
+  Of the 33 vague questions, it put 0 first and 0 in the top 10.
+It put the right movie first for 11 of 418 real requests and in the top 10 for 56.
+
+Saved every question's top 10 in results/tfidf.json. To look through them: uv run python site.py
+```
+
+Which kind of question did TF-IDF handle best, and which worst? By how much? A sentence or two is enough.
+
+**User:**
+It handled detail questions the best, identifying correctly 19 as first predictions. It really struggled with reworded and vague questions, with no correct predictions, not even within the top 10.
+
+**Claude:**
+- 🔧 `Edit`: /Users/oscarrezab/Github/macalester/comp-440/comp440-retrieval/WRITEUP.md
+- 🔧 `Bash`: Read README's Part 4 description
+- 🔧 `Bash`: Start the comparison site
+- 🔧 `Bash`: Read README site description and site output
+The slot now reads:
+
+> It handled detail questions the best, identifying correctly 19 as first predictions. It really struggled with reworded and vague questions, with no correct predictions, not even within the top 10.
+
+One way this could mislead you: the written questions were split into only about 33 per kind. A few questions can move those counts a lot.
+
+The site is running at http://localhost:8765. It shows one question at a time. For each, you see the right movie, where TF-IDF ranked it, and TF-IDF's top 10 with the words each one shares with the question. Pick "TF-IDF missed" in the Show menu to see only the misses.
+
+Please look through some answers, especially the misses. Tell me when you're done, and then I'll ask what the misses you looked at have in common.
+
+**User:**
+Done
+
+**Claude:**
+What do the misses you looked at have in common? A sentence or two is enough.
+
+**User:**
+Since synonyms are not the same words, it misses those semantic similarities completely, being unable to recognize questions that are saying pretty much the same as the overview, but with different words.
 
 <!-- end-session: 2a362902-8fda-4e44-962d-3c6f5d204ad9 -->
