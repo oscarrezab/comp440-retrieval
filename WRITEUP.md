@@ -28,7 +28,7 @@ I expect the embedding search to perform best, since word frequency might not pl
 
 ### Your movies: what do the top terms get right and wrong about what makes each one distinctive?
 
-XXXX
+For Mulholland Drive, I think the word weights captures well the main characters in the film as well as some keywords to discuss the topic such as "ominous", "enigmatic", or "identity". However, it gives high importance to generic attributes such as "brunette" and "blonde", which I don't think are descriptive enough. For The Butterfly Effect, I think the first four most-ranked words are very representative of the film, but it is strange that words such as "memories" or "consequences" are ranked 9 and 10, respectively, appearing after "finds" which I'd say it does not say much.
 
 ## Part 3: Your own searches
 
