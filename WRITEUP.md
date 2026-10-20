@@ -20,7 +20,9 @@ I expect the embedding search to perform best, since word frequency might not pl
 
 ### The settings you chose, and why
 
-XXXX
+- `REMOVE_STOP_WORDS = True`: since I this will make TF-IDF vectors less sparse, hopefully making every entry more meaningful.
+- `MIN_MOVIES = 1`: so that those summaries with uncommon words become more special.
+- `REPEATS_COUNT_LESS = False`: because I think that greater difference between word frequencies will make vectors more representative of what they belong to.
 
 ## Part 2: Top terms
 

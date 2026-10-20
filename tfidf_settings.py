@@ -12,7 +12,7 @@ from these three values. Words are always lowercased first, so "Dog" and "dog" a
 
 # Leave out about 300 common English words, such as "the", "a", "of" and "about", using
 # scikit-learn's list. True or False. (stop_words="english" when True)
-REMOVE_STOP_WORDS = False
+REMOVE_STOP_WORDS = True
 
 # Keep only the words that appear in the plot summaries of at least this many movies. A whole
 # number, 1 or more. 1 keeps every word. (min_df)
