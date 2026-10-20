@@ -46,11 +46,11 @@ Only Iron Man came up for the first question, but it was numbered 10. The algori
 
 ### Which kind of question did TF-IDF handle best, and which worst? By how much?
 
-XXXX
+It handled detail questions the best, identifying correctly 19 as first predictions. It really struggled with reworded and vague questions, with no correct predictions, not even within the top 10.
 
 ### The misses you looked at: what do they have in common?
 
-XXXX
+Since synonyms are not the same words, it misses those semantic similarities completely, being unable to recognize questions that are saying pretty much the same as the overview, but with different words.
 
 ## Part 5: Embeddings
 
