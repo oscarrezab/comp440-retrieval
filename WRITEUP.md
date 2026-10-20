@@ -34,11 +34,13 @@ For Mulholland Drive, I think the word weights captures well the main characters
 
 ### Your questions, as you typed them
 
-XXXX
+A weapons manufacturer gets captured by a group of criminals and is forced to produce weapons for them. Noticing the harm that his inventions produce, he builds an armor that helps him escape and then goes on to become a superhero.
+A confusing film of a guy who follows his death to another dimension.
+McLovin and two other high schoolers try to fit in by providing alcohol for a party. Their journey is filled with funny moments and social commentary.
 
 ### Did the movies you meant come up? What did TF-IDF get right and wrong?
 
-XXXX
+Only Iron Man came up for the first question, but it was numbered 10. The algorithm picked on key words for the descriptive questions, but really struggled with the vague one.
 
 ## Part 4: The question bank
 
