@@ -447,4 +447,10 @@ How might you combine the two methods? Thursday's class is about this, so a sent
 **User:**
 A fine-tuning of the embeddings model can help producing better predictions.
 
+**Claude:**
+- 🔧 `Edit`: /Users/oscarrezab/Github/macalester/comp-440/comp440-retrieval/WRITEUP.md
+- 🔧 `Bash`: Commit Part 5, push, check upstream
+- 🔧 `Skill`: checkpoint
+- 🔧 `Bash`: Run the checkpoint check
+
 <!-- end-session: 2a362902-8fda-4e44-962d-3c6f5d204ad9 -->
