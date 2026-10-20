@@ -7,7 +7,7 @@ summarized as one-liners.
 <!-- transcript-session: 2a362902-8fda-4e44-962d-3c6f5d204ad9 | 2026-10-20T19:28:36.302Z -->
 ## Session `2a362902`, 2026-10-20 19:28:36
 
-*5 user turns. Tool outputs and reasoning omitted.*
+*6 user turns. Tool outputs and reasoning omitted.*
 
 **User:**
 *(ran `/setup`)*
@@ -72,5 +72,23 @@ Second prediction: for vague descriptions, the kind you'd give a friend, which m
 
 **User:**
 I expect the embedding search to perform best, since word frequency might not play a big role given that a vague description does not give that much detail.
+
+**Claude:**
+- 🔧 `Edit`: /Users/oscarrezab/Github/macalester/comp-440/comp440-retrieval/WRITEUP.md
+- 🔧 `Bash`: Commit Part 0 and push
+- 🔧 `Read`: /Users/oscarrezab/Github/macalester/comp-440/comp440-retrieval/tfidf_settings.py
+- 🔧 `Bash`: Check upstream for new commits
+Nothing new upstream. Here are the three settings, in the file's order.
+
+**1. `REMOVE_STOP_WORDS`** (True or False; now `False`). This drops a fixed list of common words before scoring. Take "the dog ran to the park". With `True`, only "dog", "ran" and "park" count. With `False`, "the" and "to" count too. The list is scikit-learn's, and it is wider than "the" and "of". It also drops words like "bill", "fire", "name", "system" and the number words "one" to "twelve", except "seven".
+
+**2. `MIN_MOVIES`** (a whole number, 1 or more; now `1`). A word is kept only if it appears in the summaries of at least this many movies. If a made-up name like "Zorblax" appears in one summary, then 1 keeps it, and 2 or more throws it away. 1 is the only value that keeps a word found in a single summary.
+
+**3. `REPEATS_COUNT_LESS`** (True or False; now `False`). If a summary says "dog" 4 times, then `False` counts it as 4. `True` counts it as 1 + log(4), about 2.4. Repeats still help, just less.
+
+What do you choose for each of the three, and why? Please give all three in one reply, each with a reason. Keeping the file's value is a choice too, and it needs a reason.
+
+**User:**
+I will have `REMOVE_STOP_WORDS` be `True`, since I this will make TF-IDF vectors less sparse, hopefully making every entry more meaningful. I would keep `MIN_MOVIES` to be `1` so that those summaries with uncommon words become more special. i'd make `REPEATS_COUNT_LESS` equal `False`, because I think that greater difference between word frequencies will make vectors more representative of what they belong to.
 
 <!-- end-session: 2a362902-8fda-4e44-962d-3c6f5d204ad9 -->
