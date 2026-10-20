@@ -7,7 +7,7 @@ summarized as one-liners.
 <!-- transcript-session: 2a362902-8fda-4e44-962d-3c6f5d204ad9 | 2026-10-20T19:28:36.302Z -->
 ## Session `2a362902`, 2026-10-20 19:28:36
 
-*6 user turns. Tool outputs and reasoning omitted.*
+*9 user turns. Tool outputs and reasoning omitted.*
 
 **User:**
 *(ran `/setup`)*
@@ -90,5 +90,107 @@ What do you choose for each of the three, and why? Please give all three in one 
 
 **User:**
 I will have `REMOVE_STOP_WORDS` be `True`, since I this will make TF-IDF vectors less sparse, hopefully making every entry more meaningful. I would keep `MIN_MOVIES` to be `1` so that those summaries with uncommon words become more special. i'd make `REPEATS_COUNT_LESS` equal `False`, because I think that greater difference between word frequencies will make vectors more representative of what they belong to.
+
+**Claude:**
+- 🔧 `Edit`: /Users/oscarrezab/Github/macalester/comp-440/comp440-retrieval/tfidf_settings.py
+- 🔧 `Edit`: /Users/oscarrezab/Github/macalester/comp-440/comp440-retrieval/WRITEUP.md
+- 🔧 `Bash`: Commit Part 1, push, show settings
+The settings in `tfidf_settings.py` now read:
+
+```
+REMOVE_STOP_WORDS = True
+MIN_MOVIES = 1
+REPEATS_COUNT_LESS = False
+```
+
+The slot in `WRITEUP.md` now reads:
+
+> - `REMOVE_STOP_WORDS = True`: since I this will make TF-IDF vectors less sparse, hopefully making every entry more meaningful.
+> - `MIN_MOVIES = 1`: so that those summaries with uncommon words become more special.
+> - `REPEATS_COUNT_LESS = False`: because I think that greater difference between word frequencies will make vectors more representative of what they belong to.
+
+Part 1 is saved on GitHub. The transcript script made the `Update TRANSCRIPT.md` commit. Nothing new has come in from upstream.
+
+**Part 2: Top terms** (about 6 minutes). `top_terms.py` shows the words with the highest TF-IDF weight in one movie's plot summary. The packages are installed, so it can run now.
+
+Which two movies do you know well? Two is enough in class. Any movie you rated in HW1 is in the collection.
+
+**User:**
+Mulholland Drive (2001) and The Butterfly Event (2004)
+
+**Claude:**
+- 🔧 `Bash`: Run top terms for both movies
+Mulholland Drive ran. "The Butterfly Event" matched no title.
+
+```
+Mulholland Drive (2001): the 15 words with the highest TF-IDF weight in its plot summary.
+
+     word               weight  count here  movies
+  1. elms                0.260           1       1
+  2. brunette            0.260           1       1
+  3. kesher              0.260           1       1
+  4. casting             0.260           1       1
+  5. ominous             0.232           1       4
+  6. amnesia             0.222           1       6
+  7. betty               0.222           1       6
+  8. arrived             0.218           1       7
+  9. blonde              0.218           1       7
+ 10. adam                0.206           1      11
+ 11. filmmaker           0.204           1      12
+ 12. enigmatic           0.202           1      13
+ 13. project             0.178           1      30
+ 14. solve               0.177           1      31
+ 15. identity            0.176           1      32
+
+count here: how many times the word is in this plot summary. movies: how many of the 4,309 plot summaries have it.
+
+The plot summary: Blonde Betty Elms has only just arrived in Hollywood to become a movie star when she meets an enigmatic brunette with amnesia. Meanwhile, as the two set off to solve the second woman's identity, filmmaker Adam Kesher runs into ominous trouble while casting his latest project.
+
+Your settings: REMOVE_STOP_WORDS = True, MIN_MOVIES = 1, REPEATS_COUNT_LESS = False.
+```
+
+```
+No movie title matches "The Butterfly Event".
+Close ones: The Butterfly Effect (2004); The Revenant (2015); The Hateful Eight (2015); The Theory of Everything (2014); Lady Eve, The (1941)
+```
+
+Did you mean The Butterfly Effect (2004)?
+
+**User:**
+Yes, The Butterfly Effect
+
+**Claude:**
+- 🔧 `Bash`: Run top terms for The Butterfly Effect
+```
+The Butterfly Effect (2004): the 15 words with the highest TF-IDF weight in its plot summary.
+
+     word               weight  count here  movies
+  1. childhood           0.359           2      53
+  2. change              0.352           2      59
+  3. sublimated          0.289           1       1
+  4. technique           0.289           1       1
+  5. occupy              0.289           1       1
+  6. finds               0.243           2     307
+  7. access              0.236           1       9
+  8. allows              0.222           1      14
+  9. memories            0.200           1      28
+ 10. consequences        0.200           1      28
+ 11. history             0.185           1      45
+ 12. unexpected          0.181           1      50
+ 13. travel              0.179           1      54
+ 14. body                0.176           1      58
+ 15. struggles           0.175           1      60
+
+count here: how many times the word is in this plot summary. movies: how many of the 4,309 plot summaries have it.
+
+The plot summary: A young man struggles to access sublimated childhood memories. He finds a technique that allows him to travel back into the past, to occupy his childhood body and change history. However, he soon finds that every change he makes has unexpected consequences.
+
+Your settings: REMOVE_STOP_WORDS = True, MIN_MOVIES = 1, REPEATS_COUNT_LESS = False.
+```
+
+For these two movies, what do the top terms get right and wrong about what makes each one distinctive? A sentence or two is enough.
+
+**User:**
+For Mulholland Drive, I think the word weights captures well the main characters in the film as well as some keywords to discuss the topic such as "ominous", "enigmatic", or "identity". However, it gives high importance to generic attributes such as "brunette" and "blonde", which I don't think are descriptive enough. For The Butterfly Effect, I think the first four most-ranked words are very representative of the film, but it is strange that words such as "memories" or "consequences" are ranked 9 and 10, respectively, appearing after "finds" which I'd say it does not say much.
 
 <!-- end-session: 2a362902-8fda-4e44-962d-3c6f5d204ad9 -->
