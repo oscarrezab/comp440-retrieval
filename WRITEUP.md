@@ -56,16 +56,16 @@ Since synonyms are not the same words, it misses those semantic similarities com
 
 ### What is a sentence embedding, in your own words?
 
-XXXX
+A sentence embedding is a numeric representation of an input sentence; it is a vector of which the entries represent some feature or group of features of the sentence described. These features might not be explainable/understandable, since they are chosen algorithmically.
 
 ### Where does each method do better, and why?
 
-XXXX
+TF-IDF generally performs best when character names are directly mentioned in the question and repeated various times in the overview, which could be because of the fact that specific names are ranked very highly and therefore considered highly indicative of a given film. The embedding search is better when the plot summary and questions are semantically very similar, regardless of word matching.
 
 ### Your Part 0 predictions: which held, and which would you change?
 
-XXXX
+They both held because of how the different systems work: TF-IDF is highly dependent on the frequency/rarity of a term, while embedding search looks at the meaning of a sentence.
 
 ### How might you combine the two methods?
 
-XXXX
+A fine-tuning of the embeddings model can help producing better predictions.
