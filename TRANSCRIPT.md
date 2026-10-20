@@ -7,7 +7,7 @@ summarized as one-liners.
 <!-- transcript-session: 2a362902-8fda-4e44-962d-3c6f5d204ad9 | 2026-10-20T19:28:36.302Z -->
 ## Session `2a362902`, 2026-10-20 19:28:36
 
-*3 user turns. Tool outputs and reasoning omitted.*
+*5 user turns. Tool outputs and reasoning omitted.*
 
 **User:**
 *(ran `/setup`)*
@@ -50,5 +50,27 @@ Oscar Reza Bautista
 
 **Claude:**
 - 🔧 `Edit`: /Users/oscarrezab/Github/macalester/comp-440/comp440-retrieval/WRITEUP.md
+- 🔧 `Bash`: Dump transcript and commit name and date
+Your name and the date are saved in `WRITEUP.md`. The `Update TRANSCRIPT.md` commit came from the transcript script.
+
+**Part 0: Predictions** (about 10 minutes).
+
+Keyword search (TF-IDF) scores a movie by the words its plot summary shares with your question. Embedding search turns your question and each plot summary into a list of numbers. It ranks the movies whose numbers are closest to your question's.
+
+First prediction: for questions that name a character, place or thing, which method will do better, and why? A guess is fine. A sentence or two is enough.
+
+**User:**
+I expect TF-IDF to do better, since specific words will be highly weighted and things such as the characters or places of a movie will be very descriptive of what which movie we are talking about.
+
+**Claude:**
+- 🔧 `Edit`: /Users/oscarrezab/Github/macalester/comp-440/comp440-retrieval/WRITEUP.md
+The slot now reads:
+
+> I expect TF-IDF to do better, since specific words will be highly weighted and things such as the characters or places of a movie will be very descriptive of what which movie we are talking about.
+
+Second prediction: for vague descriptions, the kind you'd give a friend, which method will do better, and why? A sentence or two is enough.
+
+**User:**
+I expect the embedding search to perform best, since word frequency might not play a big role given that a vague description does not give that much detail.
 
 <!-- end-session: 2a362902-8fda-4e44-962d-3c6f5d204ad9 -->
