@@ -7,7 +7,7 @@ summarized as one-liners.
 <!-- transcript-session: 2a362902-8fda-4e44-962d-3c6f5d204ad9 | 2026-10-20T19:28:36.302Z -->
 ## Session `2a362902`, 2026-10-20 19:28:36
 
-*16 user turns. Tool outputs and reasoning omitted.*
+*22 user turns. Tool outputs and reasoning omitted.*
 
 **User:**
 *(ran `/setup`)*
@@ -339,5 +339,112 @@ What do the misses you looked at have in common? A sentence or two is enough.
 
 **User:**
 Since synonyms are not the same words, it misses those semantic similarities completely, being unable to recognize questions that are saying pretty much the same as the overview, but with different words.
+
+**Claude:**
+- 🔧 `Edit`: /Users/oscarrezab/Github/macalester/comp-440/comp440-retrieval/WRITEUP.md
+- 🔧 `Bash`: Commit Part 4, push, check upstream
+- 🔧 `Bash`: Run question bank with embeddings
+The slot now reads:
+
+> Since synonyms are not the same words, it misses those semantic similarities completely, being unable to recognize questions that are saying pretty much the same as the overview, but with different words.
+
+One way this could mislead you: you looked at only some misses, and those may not stand for all of them.
+
+Part 4 is saved on GitHub, and nothing new has come in from upstream.
+
+**Part 5: Embeddings** (about 12 minutes). The model download finished during setup. `evaluate.py --method embed` is now running in the background. It runs the question bank with embeddings and takes a minute or so.
+
+On October 1, GloVe gave each word a list of numbers, and words used in similar contexts got similar lists. A sentence model does the same for a whole sentence or plot summary. It gives the whole text one list of numbers, and texts with similar meaning get similar lists, even when they share no words.
+
+What is a sentence embedding, in your own words? Please use one of your own Part 3 questions or movies as the example. A sentence or two is enough.
+
+**User:**
+<task-notification>
+<task-id>bxmplsv16</task-id>
+<tool-use-id>toolu_01927ePdX3yj2z3wK1mr6bAc</tool-use-id>
+<output-file>/private/tmp/claude-501/-Users-oscarrezab-Github-macalester-comp-440-comp440-retrieval/2a362902-8fda-4e44-962d-3c6f5d204ad9/tasks/bxmplsv16.output</output-file>
+<status>completed</status>
+<summary>Background command "Run question bank with embeddings" completed (exit code 0)</summary>
+</task-notification>
+
+**Claude:**
+The embedding run has finished. I'll paste its output once your sentence-embedding slot is written, so I still need your answer to that question.
+
+**User:**
+A sentence embedding is a numeric representation of an input sentence; it is a vector of which the entries represent some feature or group of features of the sentence described. These features might not be explainable/understandable, since they are chosen algorithmically.
+
+**Claude:**
+- 🔧 `Edit`: /Users/oscarrezab/Github/macalester/comp-440/comp440-retrieval/WRITEUP.md
+- 🔧 `Read`: /private/tmp/claude-501/-Users-oscarrezab-Github-macalester-comp-440-comp440-retrieval/2a362902-8...
+- 🔧 `Bash`: Check whether the site is still running
+The slot now reads:
+
+> A sentence embedding is a numeric representation of an input sentence; it is a vector of which the entries represent some feature or group of features of the sentence described. These features might not be explainable/understandable, since they are chosen algorithmically.
+
+The slot asked for one of your own questions or movies as an example. You can add one whenever you like.
+
+Here is the embedding run's output:
+
+```
+Embedding 518 questions. This can take a minute.
+Ran 518 questions against 4,309 movies in 8 seconds.
+
+Embeddings put the right movie first for 31 of 100 written questions and in the top 10 for 59.
+  Of the 34 detail questions, they put 24 first and 31 in the top 10.
+  Of the 33 reworded questions, they put 4 first and 18 in the top 10.
+  Of the 33 vague questions, they put 3 first and 10 in the top 10.
+They put the right movie first for 32 of 418 real requests and in the top 10 for 81.
+
+The embedding model reads only about the first 200 words of a question, so it ignored the end of 62 of the 418 real requests.
+
+Saved every question's top 10 in results/embed.json. To look through them: uv run python site.py
+```
+
+The site is still running. Please reload http://localhost:8765. It now shows both methods. The Show menu has three new choices, "TF-IDF did better", "Embeddings did better" and "Both missed", each with its count.
+
+Look at one question from "TF-IDF did better" and one from "Embeddings did better", whichever you like. Tell me when you have.
+
+**User:**
+Done
+
+**Claude:**
+Where does each method do better, and why? A sentence or two is enough.
+
+If you'd like to see your three Part 3 questions run with both methods, say so and I'll run them.
+
+**User:**
+TF-IDF generally performs best when character names are directly mentioned in the question and repeated various times in the overview, which could be because of the fact that specific names are ranked very highly and therefore considered highly indicative of a given film. The embedding search is better when the plot summary and questions are semantically very similar, regardless of word matching.
+
+**Claude:**
+- 🔧 `Edit`: /Users/oscarrezab/Github/macalester/comp-440/comp440-retrieval/WRITEUP.md
+The slot now reads:
+
+> TF-IDF generally performs best when character names are directly mentioned in the question and repeated various times in the overview, which could be because of the fact that specific names are ranked very highly and therefore considered highly indicative of a given film. The embedding search is better when the plot summary and questions are semantically very similar, regardless of word matching.
+
+One way this could mislead you: you looked at one question from each group, and a single question may not stand for the whole group.
+
+Your two Part 0 predictions, word for word:
+
+> I expect TF-IDF to do better, since specific words will be highly weighted and things such as the characters or places of a movie will be very descriptive of what which movie we are talking about.
+
+> I expect the embedding search to perform best, since word frequency might not play a big role given that a vague description does not give that much detail.
+
+Which of the two held, and which would you now change, and why? A sentence or two is enough.
+
+**User:**
+They both held because of how the different systems work: TF-IDF is highly dependent on the frequency/rarity of a term, while embedding search looks at the meaning of a sentence.
+
+**Claude:**
+- 🔧 `Edit`: /Users/oscarrezab/Github/macalester/comp-440/comp440-retrieval/WRITEUP.md
+The slot now reads:
+
+> They both held because of how the different systems work: TF-IDF is highly dependent on the frequency/rarity of a term, while embedding search looks at the meaning of a sentence.
+
+One score line you left out: on detail questions, embeddings put 24 first against TF-IDF's 19. That goes the other way from your first prediction. In the top 10, TF-IDF had 32 and embeddings 31.
+
+How might you combine the two methods? Thursday's class is about this, so a sentence or a guess is enough for now.
+
+**User:**
+A fine-tuning of the embeddings model can help producing better predictions.
 
 <!-- end-session: 2a362902-8fda-4e44-962d-3c6f5d204ad9 -->
